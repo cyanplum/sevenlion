@@ -19,7 +19,6 @@
         <module>message</module>
         <module>security</module>
         <module>common</module>
-        <module>config</module>
     </modules>
 
     <properties>
