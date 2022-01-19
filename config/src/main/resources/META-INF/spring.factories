@@ -1,5 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  cn.sevenlion.cyanplum.utils.basic.utils.SpringApplicationContext,\
-  cn.sevenlion.cyanplum.utils.response.processor.ImageFieldProcessor,\
-  cn.sevenlion.cyanplum.utils.basic.config.BaseConfig,\
-  cn.sevenlion.cyanplum.utils.mapstruct.convert.MapperDecorator
+  cn.sevenlion.common.utils.SpringApplicationContext,\
+  cn.sevenlion.config.base.BaseConfig

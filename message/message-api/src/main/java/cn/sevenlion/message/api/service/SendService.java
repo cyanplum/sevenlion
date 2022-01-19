@@ -1,5 +1,6 @@
 package cn.sevenlion.message.api.service;
 
+import cn.sevenlion.message.api.domain.BatchSendRequest;
 import cn.sevenlion.message.api.domain.SendRequest;
 import cn.sevenlion.message.api.domain.SendResponse;
 
@@ -15,5 +16,12 @@ public interface SendService {
      * @return
      */
     SendResponse send(SendRequest sendRequest);
+
+    /**
+     * 多文案发送接口
+     * @param batchSendRequest
+     * @return
+     */
+    SendResponse batchSend(BatchSendRequest batchSendRequest);
 
 }

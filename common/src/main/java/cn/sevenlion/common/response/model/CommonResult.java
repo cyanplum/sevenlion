@@ -15,7 +15,7 @@ import cn.sevenlion.common.response.enums.ResultCode;
 @SuppressWarnings("unchecked")
 public class CommonResult<T> {
 
-    private long code;
+    private String code;
 
     private String msg;
 
@@ -32,7 +32,7 @@ public class CommonResult<T> {
 //        this.data = data;
 //    }
 
-    public CommonResult(long code, String msg, T data, boolean success) {
+    public CommonResult(String code, String msg, T data, boolean success) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -40,7 +40,7 @@ public class CommonResult<T> {
     }
 
 
-    public static <T> CommonResult<T> success(long code, String msg, T data) {
+    public static <T> CommonResult<T> success(String code, String msg, T data) {
         return new CommonResult(code, msg, data, true);
     }
 
@@ -55,7 +55,7 @@ public class CommonResult<T> {
         return success(null);
     }
 
-    public static <T> CommonResult<T> failed(long code, String msg, T data) {
+    public static <T> CommonResult<T> failed(String code, String msg, T data) {
         return new CommonResult(code, msg, data, false);
     }
 
@@ -63,7 +63,7 @@ public class CommonResult<T> {
         return failed(ResultCode.FAILED.getCode(), msg, data);
     }
 
-    public static <T> CommonResult<T> failed(long code, String msg) {
+    public static <T> CommonResult<T> failed(String code, String msg) {
         return failed(code, msg, null);
     }
 
@@ -71,11 +71,11 @@ public class CommonResult<T> {
        return failed(msg, null);
     }
 
-    public long getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

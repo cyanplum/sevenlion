@@ -50,7 +50,7 @@ public final class BasicResultVo<T> {
      * @return 默认成功响应
      */
     public static BasicResultVo<Void> success() {
-        return new BasicResultVo<>(RespStatusEnum.SUCCESS);
+        return new BasicResultVo<>();
     }
 
     /**

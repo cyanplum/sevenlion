@@ -23,7 +23,7 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class CommonResultPage<T>{
 
-    private long code;
+    private String code;
 
     private String msg;
 
@@ -39,7 +39,7 @@ public class CommonResultPage<T>{
 
     private long total;
 
-    public CommonResultPage(long code, String msg, Collection<T> data, boolean success, long pn, long pageSize, long pages, long total) {
+    public CommonResultPage(String code, String msg, Collection<T> data, boolean success, long pn, long pageSize, long pages, long total) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -50,7 +50,7 @@ public class CommonResultPage<T>{
         this.total = total;
     }
 
-    public static <T> CommonResultPage success(long code, String msg, Collection<T> data, long pn, long pageSize, long pages, long total) {
+    public static <T> CommonResultPage success(String code, String msg, Collection<T> data, long pn, long pageSize, long pages, long total) {
         return new CommonResultPage(code, msg, data, true, pn, pageSize, pages, total);
     }
 
@@ -72,7 +72,7 @@ public class CommonResultPage<T>{
         return success(result, page.getCurrent(), page.getSize(), page.getPages(), page.getTotal());
     }
 
-    public static <T> CommonResultPage<T> failed(long code, String msg) {
+    public static <T> CommonResultPage<T> failed(String code, String msg) {
         return new CommonResultPage(code, msg, null, false, 1L, 10L,0L, 0L);
     }
 

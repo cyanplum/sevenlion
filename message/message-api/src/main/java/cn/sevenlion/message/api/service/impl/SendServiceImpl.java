@@ -1,9 +1,12 @@
 package cn.sevenlion.message.api.service.impl;
 
+import cn.sevenlion.common.response.model.CommonResult;
+import cn.sevenlion.message.api.domain.BatchSendRequest;
 import cn.sevenlion.message.api.domain.SendRequest;
 import cn.sevenlion.message.api.domain.SendResponse;
-import cn.sevenlion.message.api.model.SendMessageModel;
+import cn.sevenlion.message.api.model.SendTaskModel;
 import cn.sevenlion.message.api.service.SendService;
+import cn.sevenlion.message.common.enums.RespStatusEnum;
 import cn.sevenlion.message.common.vo.BasicResultVo;
 import cn.sevenlion.message.support.pipeline.ProcessContext;
 import cn.sevenlion.message.support.pipeline.ProcessController;
@@ -26,17 +29,34 @@ public class SendServiceImpl implements SendService {
     @Override
     public SendResponse send(SendRequest sendRequest) {
         //构建发送消息，和模板
-        SendMessageModel sendMessageModel = SendMessageModel.builder()
+        SendTaskModel sendTaskModel = SendTaskModel.builder()
                 .messageTemplateId(sendRequest.getMessageTemplateId())
-                .messageParamList(Lists.newArrayList(sendRequest.getMessageParam())).build();
+                .messageParamList(Lists.newArrayList(sendRequest.getMessageParam()))
+                .build();
 
         ProcessContext processContext = ProcessContext.builder()
                 .code(sendRequest.getCode())
-                .processModel(sendMessageModel)
+                .processModel(sendTaskModel)
                 .needBreak(false)
-                .response(BasicResultVo.success()).build();
+                .response(CommonResult.success()).build();
         //通过执行流程器进行流程控制执行
+        //执行实际
         ProcessContext process = processController.process(processContext);
         return new SendResponse(process.getResponse().getCode(), process.getResponse().getMsg());
+    }
+
+    @Override
+    public SendResponse batchSend(BatchSendRequest batchSendRequest) {
+        SendTaskModel sendTaskModel = SendTaskModel.builder()
+                .messageTemplateId(batchSendRequest.getMessageTemplateId())
+                .messageParamList(batchSendRequest.getMessageParamList())
+                .build();
+
+        ProcessContext processContext = ProcessContext.builder()
+                .code(batchSendRequest.getCode())
+                .processModel(sendTaskModel)
+                .build();
+        ProcessContext process = processController.process(processContext);
+        return new SendResponse(process.getCode(), process.getResponse().getMsg());
     }
 }

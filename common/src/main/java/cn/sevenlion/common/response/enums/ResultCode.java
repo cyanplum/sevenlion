@@ -13,26 +13,26 @@ package cn.sevenlion.common.response.enums;
  */
 public enum ResultCode {
 
-    SUCCESS(200, "操作成功"),
-    FAILED(500, "操作失败"),
-    VALIDATE_FAILED(404, "参数检验失败"),
-    UNAUTHORIZED(401, "暂未登录或token已经过期"),
-    LOGIN_FILED(402,"登录失败！"),
-    FORBIDDEN(403, "没有相关权限");
+    SUCCESS("200", "操作成功"),
+    FAILED("500", "操作失败"),
+    VALIDATE_FAILED("404", "参数检验失败"),
+    UNAUTHORIZED("401", "暂未登录或token已经过期"),
+    LOGIN_FILED("402","登录失败！"),
+    FORBIDDEN("403", "没有相关权限");
 
-    private long code;
+    private String code;
     private String message;
 
-    ResultCode(long code, String message) {
+    ResultCode(String code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public long getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

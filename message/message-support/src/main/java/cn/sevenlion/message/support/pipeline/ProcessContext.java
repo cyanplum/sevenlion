@@ -1,5 +1,6 @@
 package cn.sevenlion.message.support.pipeline;
 
+import cn.sevenlion.common.response.model.CommonResult;
 import cn.sevenlion.message.common.vo.BasicResultVo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,5 +43,5 @@ public class ProcessContext {
     /**
      * 流程处理的结果
      */
-    BasicResultVo response;
+    CommonResult response;
 }
